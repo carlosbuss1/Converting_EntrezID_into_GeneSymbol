@@ -1,105 +1,105 @@
-Converting Entrez IDs into Gene Symbols
+**Converting Entrez IDs into Gene Symbols**
 
-This repository contains an R script and a Docker setup for converting Entrez IDs into Gene Symbols using the BioMart service. The solution is tailored for bulk processing of files containing pathway enrichment results, such as GO, KEGG, and Reactome results.
+*This repository contains an R script and a Docker setup for converting Entrez IDs into Gene Symbols using the BioMart service. The solution is tailored for bulk processing of files containing pathway enrichment results, such as GO, KEGG, and Reactome results.*
 
-Features
+***Features***
 
-Entrez ID to Gene Symbol Conversion: Automatically replaces Entrez IDs with Gene Symbols in a specified column of input files.
+*Entrez ID to Gene Symbol Conversion: Automatically replaces Entrez IDs with Gene Symbols in a specified column of input files.*
 
-Supports Multiple Files: Batch processing for multiple input files.
+*Supports Multiple Files: Batch processing for multiple input files.*
 
-Docker Integration: Ensures a reproducible and portable environment for running the script.
+*Docker Integration: Ensures a reproducible and portable environment for running the script.*
 
-Prerequisites
+*Prerequisites*
 
-For Standalone Usage
+*For Standalone Usage*
 
-R (4.0 or later)
+*R (4.0 or later)*
 
-Required R packages:
-  
-  biomaRt
+*Required R packages:*
 
-tidyverse
+  *biomaRt*
 
-For Dockerized Usage
+*tidyverse*
 
-Docker installed on your system.
+*For Dockerized Usage*
 
-Repository Structure
+*Docker installed on your system.*
 
-.
-├── Convert_Entrez_id_into_Gene_Symbol.R   # Main R script
-├── Dockerfile                             # Docker configuration file
-├── hcc_GO.txt                             # Example input file (GO enrichment results)
-├── hcc_kegg.txt                           # Example input file (KEGG enrichment results)
-├── hcc_reactome.txt                       # Example input file (Reactome enrichment results)
+*Repository Structure*
 
-Usage
+*.*
+-*├── Convert_Entrez_id_into_Gene_Symbol.R   # Main R script*
+*-├── Dockerfile                             # Docker configuration file*
+*-├── hcc_GO.txt                             # Example input file (GO enrichment results)*
+*-├── hcc_kegg.txt                           # Example input file (KEGG enrichment results)*
+*-├── hcc_reactome.txt                       # Example input file (Reactome enrichment results)*
 
-Standalone R Script
+***Usage***
 
-Clone the repository:
-  
-  git clone https://github.com/carlosbuss1/Converting_EntrezID_into_GeneSymbol.git
-cd Converting_EntrezID_into_GeneSymbol
+***Standalone R Script***
 
-Open R and install the required packages:
-  
-  install.packages(c("biomaRt", "tidyverse"))
+**Clone the repository:**
 
-Run the script:
-  
-  Rscript Convert_Entrez_id_into_Gene_Symbol.R
+  *git clone https://github.com/carlosbuss1/Converting_EntrezID_into_GeneSymbol.git*
+*cd Converting_EntrezID_into_GeneSymbol*
 
-Ensure the input files (hcc_GO.txt, hcc_kegg.txt, hcc_reactome.txt) are present in the directory.
+*Open R and install the required packages:*
 
-Dockerized Workflow
+  *install.packages(c("biomaRt", "tidyverse"))*
 
-Build the Docker image:
-  
-  docker build -t r-script-docker .
+***Run the script:***
 
-Run the Docker container:
-  
-  docker run --rm -v $(pwd):/usr/src/app r-script-docker
+  *Rscript Convert_Entrez_id_into_Gene_Symbol.R*
 
-The updated files will be saved in the same directory with the prefix Updated_.
+*Ensure the input files (hcc_GO.txt, hcc_kegg.txt, hcc_reactome.txt) are present in the directory.*
 
-Input File Format
+***Dockerized Workflow***
 
-Tab-delimited text files.
+***Build the Docker image:***
 
-Must include a column named core_enrichment containing Entrez IDs separated by /.
+  *`docker build -t r-script-docker .`*
 
-Example:
-  
-  Term	GeneRatio	core_enrichment
-GO:0008150	10/100	1234/5678/91011
+***Run the Docker container:***
 
-Output
+  *`docker run --rm -v $(pwd):/usr/src/app r-script-docker`*
 
-Updated files with the prefix Updated_.
+*The updated files will be saved in the same directory with the prefix Updated_.*
 
-Example output:
-  
-  Term	GeneRatio	core_enrichment
-GO:0008150	10/100	GeneA/GeneB/GeneC
+*Input File Format*
 
-Known Issues
+*Tab-delimited text files.*
 
-Ensure that Entrez IDs in the input files are valid and match those in the BioMart database.
+*Must include a column named core_enrichment containing Entrez IDs separated by /.*
 
-If BioMart service is down, the script may fail to retrieve mappings.
+*Example:*
 
-Contribution
+  *Term	GeneRatio	core_enrichment*
+*GO:0008150	10/100	1234/5678/91011*
 
-Feel free to open an issue or submit a pull request if you encounter any problems or have suggestions for improvement.
+*Output*
 
-License
+*Updated files with the prefix Updated_.*
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+***Example output:***
 
-Author
+  *Term	GeneRatio	core_enrichment*
+*GO:0008150	10/100	GeneA/GeneB/GeneC*
 
-Carlos BussBioinformatician at STML LabGitHub Profile
+*Known Issues*
+
+*Ensure that Entrez IDs in the input files are valid and match those in the BioMart database.*
+
+*If BioMart service is down, the script may fail to retrieve mappings.*
+
+*Contribution*
+
+*Feel free to open an issue or submit a pull request if you encounter any problems or have suggestions for improvement.*
+
+*License*
+
+*This project is licensed under the MIT License. See the LICENSE file for details.*
+
+***Author***
+
+***Carlos Buss Bioinformatician at STML Lab GitHub Profile***
